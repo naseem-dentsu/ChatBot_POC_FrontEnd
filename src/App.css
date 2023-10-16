@@ -6,22 +6,17 @@
 }
 
 .logo {
-  height: 6em;
+  height: 6vh;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -39,4 +34,117 @@
 
 .read-the-docs {
   color: #888;
+}
+
+body {
+  font-family: Gabarito;
+  background: #26b2f2;
+}
+
+.content {
+  display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    margin: auto;
+    background: rgb(255, 255, 255);
+    width: 100vh;
+    border-radius: 1%;
+    border: 1px solid black;
+}
+
+.heading-text {
+  font-size: 50px;
+  font-weight: 700;
+  color: #26b2f2;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8vh;
+  margin: 10px;
+}
+
+.sub-heading-text {
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 5px;
+  color: #fcb316;
+}
+
+.input-text {
+  width: 85vh;
+  border: 0px solid #020202;
+  background: #26b2f2;
+  color: #0f3b7c;
+  font-size: 15px;
+  font-weight: 100;
+  height: 40px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.chat-area {
+  height: 52vh;
+  width: 85vh;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.message-text {
+  border-radius: 2%;
+  max-width: 50vh;
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: 100;
+  text-align: initial;
+}
+
+.message-text-send {
+  background-color: #26b2f2;
+}
+
+.message-text-get {
+  background-color: #627ea6;
+}
+
+.message-send {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+.message-get {
+  display: flex;
+  margin: 10px;
+}
+.loading{
+  display: flex;
+  width: 80vh;
+  margin: auto;
+  justify-content: flex-start;
+}
+.loading-image{
+  width: 35px;
+    height: auto;
+}
+.loading-text{
+  margin: auto;
+  margin-left: 10px;
+  color: #26b2f2;
 }
