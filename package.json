@@ -2,7 +2,7 @@
   "name": "chatbot-poc-frontend",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://naseem-dentsu.github.io/react-gh-pages",
+  "homepage": "https://naseem-dentsu.github.io/chatbotPoc",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
