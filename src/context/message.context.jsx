@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import axios from 'axios';
 export const MessageProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
     const [inputDisabled, setInputDisabled] = useState(true);
     const [queryMessage, setQueryMessage] = useState("");
     const [history, setHistory] = useState("");
@@ -27,10 +28,10 @@ export const MessageProvider = ({ children }) => {
                     setChatThread(a)
                     setAnsMessage(answer)
                     setHistory(his)
-                }).catch((error) => { throw error; })
+                    // eslint-disable-next-line no-unused-vars
+                }).catch((_error) => { console.log(_error); setError(true); })
         }
-    }
-        , [queryMessage])
+    }, [chatThread, history, queryMessage])
 
     useEffect(() => {
         setLoading(false)
@@ -50,7 +51,8 @@ export const MessageProvider = ({ children }) => {
         ansMessage,
         setAnsMessage,
         chatThread,
-        setChatThread
+        setChatThread,
+        error
     }
     return <MessageContext.Provider value={value}>{children}</MessageContext.Provider>
 }
@@ -66,5 +68,6 @@ export const MessageContext = createContext({
     ansMessage: "",
     setAnsMessage: () => null,
     chatThread: [],
-    setChatThread: () => null
+    setChatThread: () => null,
+    error: false
 })
