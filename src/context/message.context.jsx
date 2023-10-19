@@ -20,7 +20,7 @@ export const MessageProvider = ({ children }) => {
             }
             axios.
                 post(
-                    PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_BASE_URL + "query/search",
+                    (PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_BASE_URL) + "query/search",
                     param,
                     // { baseURL: import.meta.env.VITE_APP_BASE_URL }
                     { headers: { "content-type": "application/json" } }
