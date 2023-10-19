@@ -8,6 +8,7 @@ export const MessageProvider = ({ children }) => {
     const [ansMessage, setAnsMessage] = useState("");
     const [chatThread, setChatThread] = useState([])
     const fireQuery = (queryMessage) => {
+        console.log("query", queryMessage);
         if (queryMessage) {
             const param = {
                 "query": queryMessage,
