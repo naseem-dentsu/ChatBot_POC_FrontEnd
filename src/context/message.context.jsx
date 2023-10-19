@@ -28,7 +28,6 @@ export const MessageProvider = ({ children }) => {
                     setChatThread(a)
                     setAnsMessage(answer)
                     setHistory(his)
-                    // eslint-disable-next-line no-unused-vars
                 }).catch((_error) => { console.log(_error); setError(true); })
         }
     }, [chatThread, history, queryMessage])

@@ -5,8 +5,6 @@
   "homepage": "https://naseem-dentsu.github.io/ChatBot_POC_FrontEnd",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "git subtree push --prefix dist origin gh-pages",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -25,7 +23,6 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "gh-pages": "^6.0.0",
     "react-error-overlay": "^6.0.9",
     "vite": "^4.4.5"
   }

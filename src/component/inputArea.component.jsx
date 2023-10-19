@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { MessageContext } from '../context/message.context'
 function InputArea() {
-    const { inputDisabled, setInputDisabled, setLoading, setQueryMessage, loading } = useContext(MessageContext)
+    const { setInputDisabled, setLoading, setQueryMessage, loading } = useContext(MessageContext)
     onchange = (e) => {
         e.preventDefault()
         setLoading(true)

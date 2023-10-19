@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useEffect } from 'react'
 import SendMsg from './sendChat.component'
 import GetMsg from './getChat.component'
 import { MessageContext } from '../context/message.context'
