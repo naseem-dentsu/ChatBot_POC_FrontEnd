@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import headingIcon from '/heading-icon.svg'
+import headingIcon from '../assets/heading-icon.svg'
 function Heading() {
 
     return (

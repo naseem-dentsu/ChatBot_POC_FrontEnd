@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import loadingIcon from '/loading.svg'
+import loadingIcon from '../assets/loading.svg'
 import { MessageContext } from '../context/message.context'
 function LoadingArea() {
-    const {loading} = useContext(MessageContext)
+    const { loading } = useContext(MessageContext)
     return (
         <>
             {
