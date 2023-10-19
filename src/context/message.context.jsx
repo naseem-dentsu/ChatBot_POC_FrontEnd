@@ -4,11 +4,10 @@ export const MessageProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [inputDisabled, setInputDisabled] = useState(true);
-    const [queryMessage, setQueryMessage] = useState("");
     const [history, setHistory] = useState("");
     const [ansMessage, setAnsMessage] = useState("");
     const [chatThread, setChatThread] = useState([])
-    useEffect(() => {
+    const fireQuery = (queryMessage) => {
         if (queryMessage) {
             const param = {
                 "query": queryMessage,
@@ -30,21 +29,19 @@ export const MessageProvider = ({ children }) => {
                     setHistory(his)
                 }).catch((_error) => { console.log(_error); setError(true); })
         }
-    }, [chatThread, history, queryMessage])
+    };
 
     useEffect(() => {
         setLoading(false)
         setInputDisabled(true)
-    }
-        , [history])
+    }, [history])
 
     const value = {
         loading,
         setLoading,
         inputDisabled,
         setInputDisabled,
-        queryMessage,
-        setQueryMessage,
+        fireQuery,
         history,
         setHistory,
         ansMessage,
@@ -61,7 +58,7 @@ export const MessageContext = createContext({
     inputDisabled: true,
     setInputDisabled: () => null,
     queryMessage: "",
-    setQueryMessage: () => null,
+    fireQuery: () => null,
     history: "",
     setHistory: () => null,
     ansMessage: "",
