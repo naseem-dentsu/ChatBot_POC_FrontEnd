@@ -77,7 +77,7 @@ body {
   color: black;
   font-size: 15px;
   font-weight: 100;
-  height: 50px;
+  height: 30px;
   border-radius: 5px;
   padding: 5px;
   border: 3px solid black;
@@ -166,18 +166,77 @@ body {
   padding: 10px;
   border-radius: 15px;
   margin-left: 3px;
+  height: 24px;
 }
 .sent-icon{
-  height: 35px;
+  height: 25px;
   cursor: pointer;
 }
 .mic-icon-div{
   background: #D3696A;
-  padding: 10px;
-  border-radius: 15px;
-  margin-left: 3px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-left: 3px;
+    height: 24px;
 }
 .mic-icon{
-  height: 35px;
-  cursor: pointer;
+  height: 25px;
+    cursor: pointer;
+}
+
+.typing {
+  position: relative;
+  background-color: #D3696A;
+  width: 60px;
+  height: 30px;
+  border-radius:0 31px 31px;
+  margin: 10px;
+}
+.typing span {
+  content: "";
+  -webkit-animation: blink 1.5s infinite;
+          animation: blink 1.5s infinite;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  height: 10px;
+  width: 10px;
+  background: #3b5998;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  border-radius: 50%;
+}
+.typing span:nth-child(2) {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+  margin-left: 15px;
+}
+.typing span:nth-child(3) {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+  margin-left: 30px;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
 }

@@ -8,7 +8,7 @@ function InputArea() {
     onchange = () => {
         const element = document.getElementById("chat-input")
         if (element.value.length !== 0) {
-            setLoading(true)
+            setLoading({ isLoading: true, query: element.value })
             setInputDisabled(false)
             fireQuery(element.value)
             element.value = ""
@@ -27,7 +27,7 @@ function InputArea() {
         [loading])
     return (
         <div className='input-component'>
-            <input id="chat-input" className='input-text' type='text' placeholder='please write your query here' onSubmit={onchange} />
+            <input id="chat-input" className='input-text' type='text' placeholder='Ask me something..' onSubmit={onchange} />
             <div className='mic-icon-div'>
                 <img src={micIcon} className="mic-icon" alt="Mic logo" onClick={onMicClick} />
             </div>

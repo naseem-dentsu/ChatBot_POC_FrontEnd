@@ -1,15 +1,21 @@
 import { useContext } from 'react'
-import loadingIcon from '../assets/loading.svg'
 import { MessageContext } from '../context/message.context'
+import SendMsg from './sendChat.component'
 function LoadingArea() {
     const { loading } = useContext(MessageContext)
     return (
         <>
             {
-                loading && <div className='loading'>
-                    <img src={loadingIcon} className="logo loading-image" alt="Heading logo" />
-                    <p className='loading-text'>Loading... </p>
-                </div>
+                loading.isLoading && <>
+                    <SendMsg message={loading.query} />
+                    <div className='loading'>
+                        <div className="typing">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </>
             }
         </>
     )

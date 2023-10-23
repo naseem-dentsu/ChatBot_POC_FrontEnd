@@ -26,9 +26,8 @@ function ChatArea() {
                 return (
                     <div key={index}>
                         <SendMsg message={el['Q']} />
-                        { el['A'] &&
-                        <GetMsg message={el['A']} />
-
+                        {el['A'] &&
+                            <GetMsg message={el['A']} />
                         }
                     </div>
                 )
