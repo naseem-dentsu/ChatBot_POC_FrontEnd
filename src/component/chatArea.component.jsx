@@ -4,17 +4,10 @@ import GetMsg from './getChat.component'
 import LoadingArea from '../component/loadingArea.component';
 
 import { MessageContext } from '../context/message.context'
+import { scrollToBottom } from '../utility/utils';
 function ChatArea() {
     const { chatThread, history } = useContext(MessageContext)
-    const scrollToBottom = () => {
-        var secondContent = document.getElementById(
-            "bottom",
-        );
-        var leftSection = document.getElementById("top");
-        if (leftSection) {
-            leftSection.scrollTop = secondContent.offsetTop;
-        }
-    }
+
 
     useEffect(() => {
         scrollToBottom()
@@ -32,8 +25,9 @@ function ChatArea() {
                     </div>
                 )
             })}
-            <div id='bottom' />
-            <LoadingArea />
+            <div id='bottom' >
+                <LoadingArea />
+            </div>
         </div>
 
     )

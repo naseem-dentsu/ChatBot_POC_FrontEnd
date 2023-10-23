@@ -13,7 +13,6 @@ function InputArea() {
             fireQuery(element.value)
             element.value = ""
         }
-
     }
     const onMicClick = () => {
         console.log("called")
