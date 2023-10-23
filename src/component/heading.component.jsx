@@ -4,9 +4,8 @@ function Heading() {
     return (
         <div className='heading'>
             <p className='heading-text'>
-                Beauty Genie
+                Merkle Chat Bot
             </p>
-            <img src={headingIcon} className="logo" alt="Heading logo" />
         </div>
 
 
