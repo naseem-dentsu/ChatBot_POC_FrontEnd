@@ -1,6 +1,8 @@
 import { useContext, useEffect, useRef } from 'react'
 import SendMsg from './sendChat.component'
 import GetMsg from './getChat.component'
+import LoadingArea from '../component/loadingArea.component';
+
 import { MessageContext } from '../context/message.context'
 function ChatArea() {
     const { chatThread, history } = useContext(MessageContext)
@@ -24,11 +26,15 @@ function ChatArea() {
                 return (
                     <div key={index}>
                         <SendMsg message={el['Q']} />
+                        { el['A'] &&
                         <GetMsg message={el['A']} />
+
+                        }
                     </div>
                 )
             })}
             <div id='bottom' />
+            <LoadingArea />
         </div>
 
     )

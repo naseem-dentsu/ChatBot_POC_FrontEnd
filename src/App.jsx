@@ -7,18 +7,12 @@ import ChatArea from './component/chatArea.component.jsx';
 import LoadingArea from './component/loadingArea.component';
 
 function App() {
-  useEffect(() => {
-    console.log(import.meta.env)
-  }, [])
-
   return (
     <>
       <div className='content'>
-        <Heading/>
-        <SubHeading/>
+        <Heading />
         <ChatArea />
         <InputArea />
-        <LoadingArea />
       </div>
 
     </>
