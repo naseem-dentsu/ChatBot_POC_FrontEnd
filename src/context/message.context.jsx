@@ -2,12 +2,17 @@ import { createContext, useEffect, useState } from "react";
 import axios from 'axios';
 export const MessageProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
     const [inputDisabled, setInputDisabled] = useState(true);
-    const [queryMessage, setQueryMessage] = useState("");
     const [history, setHistory] = useState("");
     const [ansMessage, setAnsMessage] = useState("");
     const [chatThread, setChatThread] = useState([])
-    useEffect(() => {
+
+    const { PROD, VITE_APP_BASE_URL, VITE_APP_API_BASE_PROD_URL } = import.meta.env;
+
+
+    const fireQuery = (queryMessage) => {
+        console.log("query", queryMessage);
         if (queryMessage) {
             const param = {
                 "query": queryMessage,
@@ -15,7 +20,7 @@ export const MessageProvider = ({ children }) => {
             }
             axios.
                 post(
-                    import.meta.env.VITE_APP_BASE_URL + "query/search",
+                    (PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_BASE_URL) + "query/search",
                     param,
                     // { baseURL: import.meta.env.VITE_APP_BASE_URL }
                     { headers: { "content-type": "application/json" } }
@@ -27,30 +32,28 @@ export const MessageProvider = ({ children }) => {
                     setChatThread(a)
                     setAnsMessage(answer)
                     setHistory(his)
-                }).catch((error) => { throw error; })
+                }).catch((_error) => { console.log(_error); setError(true); })
         }
-    }
-        , [queryMessage])
+    };
 
     useEffect(() => {
         setLoading(false)
         setInputDisabled(true)
-    }
-        , [history])
+    }, [history])
 
     const value = {
         loading,
         setLoading,
         inputDisabled,
         setInputDisabled,
-        queryMessage,
-        setQueryMessage,
+        fireQuery,
         history,
         setHistory,
         ansMessage,
         setAnsMessage,
         chatThread,
-        setChatThread
+        setChatThread,
+        error
     }
     return <MessageContext.Provider value={value}>{children}</MessageContext.Provider>
 }
@@ -60,11 +63,12 @@ export const MessageContext = createContext({
     inputDisabled: true,
     setInputDisabled: () => null,
     queryMessage: "",
-    setQueryMessage: () => null,
+    fireQuery: () => null,
     history: "",
     setHistory: () => null,
     ansMessage: "",
     setAnsMessage: () => null,
     chatThread: [],
-    setChatThread: () => null
+    setChatThread: () => null,
+    error: false
 })

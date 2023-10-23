@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-import headingIcon from '/heading-icon.svg'
 function SubHeading() {
 
     return (

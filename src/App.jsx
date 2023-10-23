@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 import Heading from './component/heading.component.jsx';
 import InputArea from './component/inputArea.component.jsx';

@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
 
-function GetMsg({message}) {
+function GetMsg({ message }) {
 
     return (
         <div className='message-get'>
