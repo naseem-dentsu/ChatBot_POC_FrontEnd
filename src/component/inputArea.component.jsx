@@ -26,9 +26,11 @@ function InputArea() {
         [loading])
     return (
         <div className='input-component'>
-            <input id="chat-input" className='input-text' type='text' placeholder='Ask me something..' onSubmit={onchange} />
-            <div className='mic-icon-div'>
-                <img src={micIcon} className="mic-icon" alt="Mic logo" onClick={onMicClick} />
+            <div className='input-component-inter'>
+                <input id="chat-input" className='input-text' type='text' placeholder='Write to Bot' onSubmit={onchange} />
+                <div className='mic-icon-div'>
+                    <img src={micIcon} className="mic-icon" alt="Mic logo" onClick={onMicClick} />
+                </div>
             </div>
             <div className='sent-icon-div'>
                 <img src={sentIcon} className="sent-icon" alt="Sent logo" onClick={onchange} />

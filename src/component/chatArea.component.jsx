@@ -15,6 +15,17 @@ function ChatArea() {
 
     return (
         <div className='chat-area no-scrollbar' id="top">
+            <div className='dummy-message-div'>
+                <div className='dummy-message-apla'>
+                    <p className='dummy-message-apla-text'>
+                        M
+                    </p>
+                </div>
+                <p className='dummy-message'>
+                    Hi! How can I help you?
+                </p>
+            </div>
+
             {chatThread.map((el, index) => {
                 return (
                     <div key={index}>
