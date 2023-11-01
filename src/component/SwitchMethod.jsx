@@ -13,7 +13,7 @@ function SwitchMethod() {
         )
       )
       }>
-      Switch to : {apiEndpoint == "query/search" ? "query/document" : "query/search"}
+      Switch to : {apiEndpoint == "query/search" ? "search using offline documents" : "search using real time methods"}
     </button>
   )
 }
