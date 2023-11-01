@@ -1,10 +1,8 @@
-import { useEffect } from 'react'
 import './App.css'
 import Heading from './component/heading.component.jsx';
 import InputArea from './component/inputArea.component.jsx';
-import SubHeading from './component/subHeading.component.jsx';
 import ChatArea from './component/chatArea.component.jsx';
-import LoadingArea from './component/loadingArea.component';
+import SwitchMethod from './component/SwitchMethod';
 
 function App() {
   return (
@@ -13,6 +11,7 @@ function App() {
         <Heading />
         <ChatArea />
         <InputArea />
+        <SwitchMethod />
       </div>
 
     </>

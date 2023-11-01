@@ -7,6 +7,8 @@ export const MessageProvider = ({ children }) => {
     const [history, setHistory] = useState("");
     const [ansMessage, setAnsMessage] = useState("");
     const [chatThread, setChatThread] = useState([])
+    const [apiEndpoint, setApiEndpoint] = useState("query/search");
+
 
     const { PROD, VITE_APP_API_BASE_DEV_URL, VITE_APP_API_BASE_PROD_URL } = import.meta.env;
 
@@ -19,12 +21,12 @@ export const MessageProvider = ({ children }) => {
             }
             axios.
                 post(
-                    (PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_API_BASE_DEV_URL) + "query/search",
+                    (PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_API_BASE_DEV_URL) + apiEndpoint,
                     param,
                     // { baseURL: import.meta.env.VITE_APP_BASE_URL }
                     { headers: { "content-type": "application/json" } }
                 ).then((response) => {
-                    const answer = response.data.text
+                    const answer = response.data
                     const his = history + "\nQ:" + queryMessage + "\nA:" + answer
                     let a = chatThread
                     a.push({ "Q": queryMessage, "A": answer })
@@ -34,7 +36,7 @@ export const MessageProvider = ({ children }) => {
                 }).catch((_error) => {
                     console.log(_error);
                     const answer = "Something went wrong. Please try again"
-                    const his = history + "\nQ:" + queryMessage + "\nA:" + answer
+                    const his = history + `Human: ${queryMessage}\nAI: ${answer}`
                     let a = chatThread
                     a.push({ "Q": queryMessage, "A": answer })
                     setChatThread(a)
@@ -62,7 +64,9 @@ export const MessageProvider = ({ children }) => {
         setAnsMessage,
         chatThread,
         setChatThread,
-        error
+        error,
+        apiEndpoint,
+        setApiEndpoint
     }
     return <MessageContext.Provider value={value}>{children}</MessageContext.Provider>
 }
