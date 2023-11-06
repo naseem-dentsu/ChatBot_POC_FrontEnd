@@ -26,7 +26,7 @@ export const MessageProvider = ({ children }) => {
                     // { baseURL: import.meta.env.VITE_APP_BASE_URL }
                     { headers: { "content-type": "application/json" } }
                 ).then((response) => {
-                    const answer = response.data
+                    const answer = typeof response.data == "string" ? response.data : response.data.text;
                     const his = history + "\nQ:" + queryMessage + "\nA:" + answer
                     let a = chatThread
                     a.push({ "Q": queryMessage, "A": answer })
