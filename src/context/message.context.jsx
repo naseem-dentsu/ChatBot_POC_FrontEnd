@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from 'axios';
+import { responseParser } from "../utility/utils";
 export const MessageProvider = ({ children }) => {
     const [loading, setLoading] = useState({ isLoading: false, query: "" });
     const [error, setError] = useState(false);
@@ -19,6 +20,7 @@ export const MessageProvider = ({ children }) => {
                 "query": queryMessage,
                 "history": history
             }
+
             axios.
                 post(
                     (PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_API_BASE_DEV_URL) + apiEndpoint,
@@ -26,13 +28,18 @@ export const MessageProvider = ({ children }) => {
                     // { baseURL: import.meta.env.VITE_APP_BASE_URL }
                     { headers: { "content-type": "application/json" } }
                 ).then((response) => {
+
                     const answer = typeof response.data == "string" ? response.data : response.data.text;
+
                     const his = history + "\nQ:" + queryMessage + "\nA:" + answer
-                    let a = chatThread
-                    a.push({ "Q": queryMessage, "A": answer })
-                    setChatThread(a)
-                    setAnsMessage(answer)
+                    const finalOutput = responseParser(answer);
+
+                    setChatThread(prevThread => [...prevThread, { "Q": queryMessage, "A": finalOutput }])
+
+                    setAnsMessage(finalOutput)
+
                     setHistory(his)
+
                 }).catch((_error) => {
                     console.log(_error);
                     const answer = "Something went wrong. Please try again"
