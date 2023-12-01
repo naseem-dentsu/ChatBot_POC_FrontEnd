@@ -412,3 +412,12 @@ body {
   outline: -webkit-focus-ring-color auto 0px;
 }
 
+.product-image{
+  width: 100%;
+  max-width: 150px;
+}
+
+.hyperlink{
+  color: #23262A;
+  margin-left: 20px;
+}
