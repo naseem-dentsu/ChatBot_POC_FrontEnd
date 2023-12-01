@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .logo {
@@ -41,26 +42,72 @@ body {
 }
 
 .content {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   min-height: 90vh;
   margin: auto;
-  background: #F2F2F2;
+  background: #F2F2F2;*/
   width: 80vh;
+  min-height: 90vh;
+  animation: fade-in .2s .2s ease-in-out both;
+  position: fixed;
+  left: auto;
+  bottom: 0;
+  right: 20px;
+  margin: 0;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100% - 24px);
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+  z-index: 15;
+  text-align: center;
+  overflow: hidden;
+  pointer-events: all;
 }
 
 .heading-text {
-  font-size: 50px;
-  font-weight: 500;
-  color: #D3696A;
+  margin: 0;
+    align-self: center;
+    flex-grow: 1;
+    text-align: left;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: inherit;
+    font-weight: normal;
+    letter-spacing: 0.025em;
+    color: white;
 }
 
 .heading {
+  background-color: rgb(200, 16, 46);
+  box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  direction: ltr;
+  display :block;
+  font-family :ShiseidoGinza_FontFamily, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height :50px;
+  line-height: 24px;
+  min-height: 50px;
+  pointer-events: all;
+  text-align :center;
+}
+.heading header{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 8vh;
-  margin: 10px;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    padding: 0 14px;
+    height: 100%;
+}
+.heading img{
+  margin-right: 8px;
+  max-height: 36px;
+  max-width: 36px;
 }
 
 .sub-heading-text {
@@ -70,21 +117,7 @@ body {
   color: #fcb316;
 }
 
-.input-text {
-  width: 45vh;
-  border: 0px solid #f2f2f2;
-  background: white;
-  height: 30px;
-  border-radius: 5px;
-  padding: 5px;
-  color: #23262A;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  /* 24px */
-}
+
 
 .chat-area {
   height: 65vh;
@@ -94,7 +127,7 @@ body {
   margin-bottom: 30px;
   scroll-behavior: smooth;
   overflow-y: scroll;
-  background-color: #F2F2F2;
+  background-color: #FFF;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -117,7 +150,7 @@ body {
 }
 
 .message-text-send {
-  background-color: #D3696A;
+  background-color: rgb(200, 16, 46);
   color: #FFF;
   font-family: Inter;
   font-size: 16px;
@@ -134,7 +167,6 @@ body {
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
-  background: #FFFFFF;
   border-top-left-radius: 0px;
 }
 
@@ -145,10 +177,27 @@ body {
 }
 
 .message-get {
-  display: flex;
-  margin: 10px;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  background-color: #fff;
+  position: relative;
+  word-wrap: break-word;
+  overflow: hidden;
+  padding: 0 18px;
+  margin-bottom: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  list-style: none;
+}
+.brand-logo{
+  position: absolute;
+  bottom: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+  background-size: cover;
+  border: none;
+  float: left;
+  margin: 0 14px 14px 0;
+  background-image:url(https://shiseido.ipscdn.net/sa1/on/demandware.static/-/Sites-shiseido_us-Library/default/dw0adc8875/sfsc/Shiseido.Camellia.Positive.RGB_d6001c.png);
 }
 
 .loading {
@@ -166,19 +215,39 @@ body {
 .loading-text {
   margin: auto;
   margin-left: 10px;
-  color: #D3696A;
+  color: rgb(200, 16, 46);
 }
 
 .input-component {
   display: flex;
-  align-content: center;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
+  padding: 0;
+  width: 100%;
+  background-color: #ededed;
+  padding: 12px 8px;
+}
+.input-component-inter {
+  display: flex;
+  background: white;
+  border-radius: 5px;
+  width: 85%;
+}
+.input-text {
+  width: 100%;
+  border: 0px solid #f2f2f2;
+  background: white;
+  border-radius: 5px;
+  padding: 5px;
+  color: #23262A;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  /* 24px */
 }
 
 .sent-icon-div {
-  background: #D3696A;
+  background: rgb(200, 16, 46);
   padding: 10px;
   border-radius: 15px;
   margin-left: 8px;
@@ -268,12 +337,15 @@ body {
 }
 
 .dummy-message-div {
-  display: flex;
-  width: 260px;
-  text-align: left;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
+  background-color: #fff;
+  position: relative;
+  word-wrap: break-word;
+  overflow: hidden;
+  padding: 0 18px;
+  margin-bottom: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  list-style: none;
 
 }
 
@@ -298,21 +370,34 @@ body {
 }
 
 .dummy-message-apla {
-  display: flex;
-  width: 44px;
-  height: 44px;
-  padding: 8px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-  border-radius: 30px;
-  background: #EA9A5E;
-  margin-top: 30px;
-  margin-right: 16px;
+  position: absolute;
+  bottom: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+  background-size: cover;
+  border: none;
+  float: left;
+  margin: 0 14px 14px 0;
+  background-image:url(https://shiseido.ipscdn.net/sa1/on/demandware.static/-/Sites-shiseido_us-Library/default/dw0adc8875/sfsc/Shiseido.Camellia.Positive.RGB_d6001c.png);
 }
-
+.chat-content{
+  background-color: #e8e8e8 !important;
+    color: #000000 !important;
+    font-weight: lighter;
+    margin-left: 40px;
+    border-radius: 10px 10px 10px 0;
+    font-size: 0.875em;
+    max-width: 85%;
+    padding: 10px;
+    white-space: pre-wrap;
+    text-align: left;
+}
+.chat-content p.dummy-message{
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 100;
+}
 .dummy-message-apla-text {
   color: #FFF;
   text-align: center;
@@ -327,8 +412,3 @@ body {
   outline: -webkit-focus-ring-color auto 0px;
 }
 
-.input-component-inter {
-  display: flex;
-  background: white;
-  border-radius: 5px;
-}

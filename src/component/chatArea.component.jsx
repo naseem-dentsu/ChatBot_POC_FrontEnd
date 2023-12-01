@@ -21,9 +21,11 @@ function ChatArea() {
                         M
                     </p>
                 </div>
-                <p className='dummy-message'>
-                    Hi! How can I help you?
-                </p>
+                <div className="chat-content">
+                    <p className='dummy-message'>
+                        Hi! How can I help you?
+                    </p>
+                </div>
             </div>
 
             {chatThread.map((el, index) => {
