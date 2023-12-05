@@ -168,6 +168,16 @@ body {
   font-weight: 500;
   line-height: 150%;
   border-top-left-radius: 0px;
+  display: flex;
+  flex-direction: column;
+}
+.message-text-get img{
+  display: block;
+  margin-bottom: 18px;
+  align-self: center;
+  border: 2px solid #FFF;
+  border-radius: 8px;
+  box-shadow: -2px 2px 10px 0px rgba(0,0,0,0.15);
 }
 
 .message-send {
