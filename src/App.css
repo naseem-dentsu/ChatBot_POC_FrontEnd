@@ -47,6 +47,7 @@ body {
   min-height: 90vh;
   margin: auto;
   background: #F2F2F2;*/
+  background-color: white;
   width: 80vh;
   min-height: 90vh;
   animation: fade-in .2s .2s ease-in-out both;

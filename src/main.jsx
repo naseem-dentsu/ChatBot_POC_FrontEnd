@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { MessageProvider } from './context/message.context.jsx'
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('chatbot_root')).render(
   <React.StrictMode>
     <MessageProvider>
       <App />
