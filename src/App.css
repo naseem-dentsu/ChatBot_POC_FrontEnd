@@ -80,6 +80,7 @@ body {
     font-weight: normal;
     letter-spacing: 0.025em;
     color: white;
+    font-size: 24px;
 }
 
 .heading {
@@ -91,9 +92,9 @@ body {
   font-family :ShiseidoGinza_FontFamily, sans-serif;
   font-size: 16px;
   font-weight: 400;
-  height :50px;
+  height :62px;
   line-height: 24px;
-  min-height: 50px;
+  min-height: 62px;
   pointer-events: all;
   text-align :center;
 }
@@ -108,7 +109,8 @@ body {
 .heading img{
   margin-right: 8px;
   max-height: 36px;
-  max-width: 36px;
+  max-width: 78px;
+  margin-right: 16px;
 }
 
 .sub-heading-text {
@@ -244,16 +246,14 @@ body {
 }
 .input-text {
   width: 100%;
-  border: 0px solid #f2f2f2;
-  background: white;
-  border-radius: 5px;
-  padding: 5px;
-  color: #23262A;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
+  border: 0px solid #f2f2f2!important;
+  background: white!important;
+  border-radius: 5px!important;
+  padding: 5px 12px!important;
+  color: #23262A!important;
+  font-size: 16px!important;
+  font-weight: 400!important;
+  line-height: 150%!important;
   /* 24px */
 }
 
@@ -262,7 +262,11 @@ body {
   padding: 10px;
   border-radius: 15px;
   margin-left: 8px;
-  height: 24px;
+  height: 46px;
+  width: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sent-icon {
@@ -275,7 +279,10 @@ body {
   padding: 10px;
   border-radius: 15px;
   margin-left: 3px;
-  height: 24px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mic-icon {
