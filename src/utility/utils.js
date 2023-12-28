@@ -16,6 +16,8 @@ export const responseParser = (data) => {
 
   data = data.replaceAll(newline, ' <br>');
   data = data.replaceAll(here, "")
+
+  //replaces most of the urls with working hyperlinks or image src
   data = data.replace(pluckingregex, function (matched) {
     if (matched.match(imgurl)) {
       return ` <br/> <img src=${matched.match(url)[0]} class="product-image"/>`
@@ -25,5 +27,32 @@ export const responseParser = (data) => {
     }
   })
 
+  data = convertRelativeToAbsolute(data, "https://www.shiseido.co.uk")
+
   return data;
 }
+
+function convertRelativeToAbsolute(inputString, domain) {
+  // Regular expression to match relative URLs in brackets ending with ".html"
+  // var relativeUrlRegex = /\((\/[^)]+\.html)\)/g;
+  var relativeUrlRegex = /\(([^)]+)\)/g;
+
+  // Replace relative URLs with absolute URLs in anchor tags
+  var resultString = inputString.replace(relativeUrlRegex, function (match, p1) {
+    // Construct absolute URL by concatenating domain and relative path
+    var absoluteUrl = domain + p1.trim();
+    // Create an HTML anchor tag
+    return '<br/><a href="' + absoluteUrl + '" target="_blank" class="hyperlink"> Go to Page </a>';
+  });
+
+  return resultString;
+}
+
+function convertDataBasedImgtoURL(inputString) {
+  var dataImageUrlRegex = /\((data:image\/[^;]+;base64,[^)]+)\)/g;
+  inputString.replace(dataImageUrlRegex, function (match, p1) {
+    // Create an HTML anchor tag
+    return ` <br/> <img src=${p1.trim()} class="product-image"/>`
+  });
+}
+
