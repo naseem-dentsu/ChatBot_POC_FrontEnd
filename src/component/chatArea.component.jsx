@@ -15,18 +15,7 @@ function ChatArea() {
 
     return (
         <div className='chat-area no-scrollbar' id="top">
-            <div className='dummy-message-div'>
-                <div className='dummy-message-apla'>
-                    <p className='dummy-message-apla-text'>
-                        M
-                    </p>
-                </div>
-                <div className="chat-content">
-                    <p className='dummy-message'>
-                        Hi! How can I help you?
-                    </p>
-                </div>
-            </div>
+            <GetMsg message={"Hello, I am ShiseidoBot, and I'd like to assist you. Please keep in mind that as an AI, I may make mistakes, and some links or photos may be broken."} />
 
             {chatThread.map((el, index) => {
                 return (

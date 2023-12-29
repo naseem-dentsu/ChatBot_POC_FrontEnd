@@ -22,13 +22,14 @@ function InputArea() {
     isMicrophoneAvailable,
   } = useSpeechRecognition();
 
-  onchange = () => {
+  onchange = async () => {
     const element = document.getElementById("chat-input");
     if (element.value.length !== 0) {
       setLoading({ isLoading: true, query: element.value });
       setInputDisabled(false);
-      fireQuery(element.value);
+      let query = element.value;
       element.value = "";
+      await fireQuery(query);
     }
   };
   const onMicClick = () => {

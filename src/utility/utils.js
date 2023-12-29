@@ -48,11 +48,11 @@ function convertRelativeToAbsolute(inputString, domain) {
   return resultString;
 }
 
-function convertDataBasedImgtoURL(inputString) {
-  var dataImageUrlRegex = /\((data:image\/[^;]+;base64,[^)]+)\)/g;
-  inputString.replace(dataImageUrlRegex, function (match, p1) {
-    // Create an HTML anchor tag
-    return ` <br/> <img src=${p1.trim()} class="product-image"/>`
-  });
-}
+// function convertDataBasedImgtoURL(inputString) {
+//   var dataImageUrlRegex = /\((data:image\/[^;]+;base64,[^)]+)\)/g;
+//   inputString.replace(dataImageUrlRegex, function (match, p1) {
+//     // Create an HTML anchor tag
+//     return ` <br/> <img src=${p1.trim()} class="product-image"/>`
+//   });
+// }
 

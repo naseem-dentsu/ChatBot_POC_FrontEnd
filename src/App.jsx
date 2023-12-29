@@ -2,7 +2,7 @@ import './App.css'
 import Heading from './component/heading.component.jsx';
 import InputArea from './component/inputArea.component.jsx';
 import ChatArea from './component/chatArea.component.jsx';
-import SwitchMethod from './component/SwitchMethod';
+// import SwitchMethod from './component/SwitchMethod';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Heading />
         <ChatArea />
         <InputArea />
-        <SwitchMethod />
+        {/* <SwitchMethod /> */}
       </div>
 
     </>
