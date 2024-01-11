@@ -4,12 +4,12 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { MessageContext } from "../context/message.context";
-import sentIcon from "../assets/sent.svg";
-import micIconClose from "../assets/mic.svg";
-import micIconOpen from "../assets/voice-search.png";
-// const sentIcon = 'https://cdn.jsdelivr.net/gh/indranil-k/chatbot@master/assets/sent-9ce87ef0.svg';
-// const micIconClose = 'https://cdn.jsdelivr.net/gh/indranil-k/chatbot@master/assets/mic-67dc5979.svg';
-// const micIconOpen = 'https://cdn.jsdelivr.net/gh/indranil-k/chatbot@master/assets/voice-search-948fb314.png';
+import  "../assets/sent.svg";
+import  "../assets/mic.svg";
+import "../assets/voice-search.png";
+const sentIcon = 'https://cdn.jsdelivr.net/gh/indranil-k/chatbot@master/assets/sent.svg';
+const micIconClose = 'https://cdn.jsdelivr.net/gh/indranil-k/chatbot@master/assets/mic.svg';
+const micIconOpen = 'https://cdn.jsdelivr.net/gh/indranil-k/chatbot@master/assets/voice-search.png';
 
 function InputArea() {
   const { setInputDisabled, setLoading, fireQuery, loading } =
