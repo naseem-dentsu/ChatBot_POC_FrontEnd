@@ -27,7 +27,7 @@ export const responseParser = (data) => {
     }
   })
 
-  data = convertRelativeToAbsolute(data, "https://www.shiseido.co.uk")
+  data = convertRelativeToAbsolute(data, "https://www.shiseido.com")
 
   return data;
 }
