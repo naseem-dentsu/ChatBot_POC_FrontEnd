@@ -20,10 +20,10 @@ export const responseParser = (data) => {
   //replaces most of the urls with working hyperlinks or image src
   data = data.replace(pluckingregex, function (matched) {
     if (matched.match(imgurl)) {
-      return ` <br/> <img src=${matched.match(url)[0]} class="product-image"/>`
+      return ` <img src=${matched.match(url)[0]} class="product-image"/>`
     }
     else {
-      return ` <br/> <a href=${matched.match(url)[0]} target="_blank" class="hyperlink"> Go to Page </a>`
+      return ` <a href=${matched.match(url)[0]} target="_blank" class="hyperlink"> Go to Page </a>`
     }
   })
 
@@ -42,7 +42,7 @@ function convertRelativeToAbsolute(inputString, domain) {
     // Construct absolute URL by concatenating domain and relative path
     var absoluteUrl = domain + p1.trim();
     // Create an HTML anchor tag
-    return '<br/><a href="' + absoluteUrl + '" target="_blank" class="hyperlink"> Go to Page </a>';
+    return '<a href="' + absoluteUrl + '" target="_blank" class="hyperlink"> Go to Page </a>';
   });
 
   return resultString;
