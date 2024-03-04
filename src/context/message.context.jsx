@@ -11,50 +11,18 @@ export const MessageProvider = ({ children }) => {
     const [apiEndpoint, setApiEndpoint] = useState("query/document");
 
 
-    const { PROD, VITE_APP_API_BASE_DEV_URL, VITE_APP_API_BASE_PROD_URL } = import.meta.env;
+    const { PROD, VITE_APP_API_BASE_DEV_URL, VITE_APP_API_BASE_PROD_URL, VITE_APP_CLIENT } = import.meta.env;
 
-
+    const url = (PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_API_BASE_DEV_URL);
     const fireQuery = async (queryMessage) => {
         if (queryMessage) {
             const param = {
                 "query": queryMessage,
                 "history": history
             }
-            /* 
-                Old code , since axios still (2023) doesnt support streaming data I will have to use the native fetch api
-                axios.
-                    post(
-                        (PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_API_BASE_DEV_URL) + apiEndpoint,
-                        param,
-                        // { baseURL: import.meta.env.VITE_APP_BASE_URL }
-                        { headers: { "content-type": "application/json" }, responseType: "stream" }
-                    ).then((response) => {
-                        console.log(response);
-                        const answer = typeof response.data == "string" ? response.data : response.data.text;
-    
-                        const his = history + "\nQ:" + queryMessage + "\nA:" + answer
-                        const finalOutput = responseParser(answer);
-    
-                        setStreamMsg(finalOutput)
-                        setChatThread(prevThread => [...prevThread, { "Q": queryMessage, "A": finalOutput }])
-    
-    
-                        setHistory(his)
-    
-                    }).catch((_error) => {
-                        console.log(_error);
-                        const answer = "Something went wrong. Please try again"
-                        const his = history + `Human: ${queryMessage}\nAI: ${answer}`
-                        let a = chatThread
-                        a.push({ "Q": queryMessage, "A": answer })
-                        setChatThread(a)
-                        setStreamMsg(answer)
-                        setHistory(his)
-                        setError(true);
-                    })
-            */
+
             try {
-                const response = await fetch((PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_API_BASE_DEV_URL) + apiEndpoint, {
+                const response = await fetch(url + apiEndpoint, {
                     // signal: AbortSignal.timeout(10000),
                     method: "POST",
                     headers: {
@@ -122,7 +90,8 @@ export const MessageProvider = ({ children }) => {
         setChatThread,
         error,
         apiEndpoint,
-        setApiEndpoint
+        setApiEndpoint,
+        client: VITE_APP_CLIENT
     }
     return <MessageContext.Provider value={value}>{children}</MessageContext.Provider>
 }
@@ -139,5 +108,6 @@ export const MessageContext = createContext({
     setAnsMessage: () => null,
     chatThread: [],
     setChatThread: () => null,
-    error: false
+    error: false,
+    client: ""
 })
