@@ -2,6 +2,14 @@ import { createContext, useEffect, useState } from "react";
 // import axios from 'axios';
 import { responseParser } from "../utility/utils";
 export const MessageProvider = ({ children }) => {
+    const { PROD,
+        VITE_APP_API_BASE_DEV_URL,
+        VITE_APP_API_BASE_DEV_DISNEY_URL,
+        VITE_APP_API_BASE_PROD_URL,
+        VITE_APP_API_BASE_PROD_DISNEY_URL,
+    } = import.meta.env;
+
+
     const [loading, setLoading] = useState({ isLoading: false, query: "" });
     const [error, setError] = useState(false);
     const [inputDisabled, setInputDisabled] = useState(true);
@@ -9,10 +17,9 @@ export const MessageProvider = ({ children }) => {
     const [streamMsg, setStreamMsg] = useState("");
     const [chatThread, setChatThread] = useState([])
     const [apiEndpoint, setApiEndpoint] = useState("query/document");
-
-
-    const { PROD, VITE_APP_API_BASE_DEV_URL, VITE_APP_API_BASE_PROD_URL } = import.meta.env;
-
+    const [client, setClient] = useState();
+    const [baseUrl, setBaseUrl] = useState("");
+    const [domain, setDomain] = useState("https://www.shiseido.com");
 
     const fireQuery = async (queryMessage) => {
         if (queryMessage) {
@@ -20,41 +27,9 @@ export const MessageProvider = ({ children }) => {
                 "query": queryMessage,
                 "history": history
             }
-            /* 
-                Old code , since axios still (2023) doesnt support streaming data I will have to use the native fetch api
-                axios.
-                    post(
-                        (PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_API_BASE_DEV_URL) + apiEndpoint,
-                        param,
-                        // { baseURL: import.meta.env.VITE_APP_BASE_URL }
-                        { headers: { "content-type": "application/json" }, responseType: "stream" }
-                    ).then((response) => {
-                        console.log(response);
-                        const answer = typeof response.data == "string" ? response.data : response.data.text;
-    
-                        const his = history + "\nQ:" + queryMessage + "\nA:" + answer
-                        const finalOutput = responseParser(answer);
-    
-                        setStreamMsg(finalOutput)
-                        setChatThread(prevThread => [...prevThread, { "Q": queryMessage, "A": finalOutput }])
-    
-    
-                        setHistory(his)
-    
-                    }).catch((_error) => {
-                        console.log(_error);
-                        const answer = "Something went wrong. Please try again"
-                        const his = history + `Human: ${queryMessage}\nAI: ${answer}`
-                        let a = chatThread
-                        a.push({ "Q": queryMessage, "A": answer })
-                        setChatThread(a)
-                        setStreamMsg(answer)
-                        setHistory(his)
-                        setError(true);
-                    })
-            */
+
             try {
-                const response = await fetch((PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_API_BASE_DEV_URL) + apiEndpoint, {
+                const response = await fetch(baseUrl + apiEndpoint, {
                     // signal: AbortSignal.timeout(10000),
                     method: "POST",
                     headers: {
@@ -79,8 +54,8 @@ export const MessageProvider = ({ children }) => {
                         break;
                     }
                     const decodedChunk = decoder.decode(value, { stream: true });
-                    finalOutput = responseParser(finalOutput + decodedChunk);
-                    setStreamMsg(answer => responseParser(answer + decodedChunk)); // update state with new chunk
+                    finalOutput = responseParser(finalOutput + decodedChunk, domain);
+                    setStreamMsg(answer => responseParser(answer + decodedChunk, domain)); // update state with new chunk
                 }
 
                 setChatThread(prevThread => [...prevThread, { "Q": queryMessage, "A": finalOutput }])
@@ -108,6 +83,29 @@ export const MessageProvider = ({ children }) => {
         setInputDisabled(true)
     }, [history])
 
+    useEffect(() => {
+        if (!client) return;
+        let url;
+        if (PROD) {
+            if (client === "DISNEY") {
+                url = VITE_APP_API_BASE_PROD_DISNEY_URL
+            }
+            else {
+                url = VITE_APP_API_BASE_PROD_URL
+            }
+        }
+        else {
+            if (client === "DISNEY") {
+                url = VITE_APP_API_BASE_DEV_DISNEY_URL
+            }
+            else {
+                url = VITE_APP_API_BASE_DEV_URL
+            }
+        }
+        setBaseUrl(url)
+        setDomain(client === "DISNEY" ? "https://www.disneystore.co.uk/" : "https://www.shiseido.com")
+    }, [PROD, VITE_APP_API_BASE_DEV_DISNEY_URL, VITE_APP_API_BASE_DEV_URL, VITE_APP_API_BASE_PROD_DISNEY_URL, VITE_APP_API_BASE_PROD_URL, client])
+
     const value = {
         loading,
         setLoading,
@@ -122,7 +120,9 @@ export const MessageProvider = ({ children }) => {
         setChatThread,
         error,
         apiEndpoint,
-        setApiEndpoint
+        setApiEndpoint,
+        client,
+        setClient
     }
     return <MessageContext.Provider value={value}>{children}</MessageContext.Provider>
 }
@@ -139,5 +139,7 @@ export const MessageContext = createContext({
     setAnsMessage: () => null,
     chatThread: [],
     setChatThread: () => null,
-    error: false
+    error: false,
+    client: "",
+    setClient: () => { },
 })

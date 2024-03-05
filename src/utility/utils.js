@@ -7,7 +7,7 @@ export const scrollToBottom = () => {
     leftSection.scrollTop = secondContent.offsetTop + secondContent.offsetHeight;
   }
 }
-export const responseParser = (data) => {
+export const responseParser = (data, domain) => {
   const pluckingregex = /[\[|\(]https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)[\)|\]]/gm
   const here = /\[here\]/gm
   const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gm
@@ -27,12 +27,12 @@ export const responseParser = (data) => {
     }
   })
 
-  data = convertRelativeToAbsolute(data, "https://www.shiseido.com")
+  data = convertRelativeToAbsolute(data, domain)
 
   return data;
 }
 
-function convertRelativeToAbsolute(inputString, domain) {
+function convertRelativeToAbsolute(inputString, domain = "https://www.shiseido.com") {
   // Regular expression to match relative URLs in brackets ending with ".html"
   // var relativeUrlRegex = /\((\/[^)]+\.html)\)/g;
   var relativeUrlRegex = /\(([^)]+)\)/g;

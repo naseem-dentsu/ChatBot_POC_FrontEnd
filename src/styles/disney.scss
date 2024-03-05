@@ -1,0 +1,67 @@
+.disney-wrapper {
+  .heading {
+    background-color: #0795e6;
+    font-family: AvenirNext, Helvetica, Arial, sans-serif;
+  }
+
+  .loading {
+    padding: 0 102px 0 0;
+
+    .brand-logo {
+      background-image: url("https://www.disneystore.co.uk/on/demandware.static/Sites-shopDisneyEN-Site/-/default/dwee8a51db/images/favicon-196x196.png");
+      border-radius: 0;
+    }
+  }
+
+  .chat-area {
+    .message-get {
+      padding: 0 102px 0 0;
+
+      .brand-logo {
+        background-image: url("https://www.disneystore.co.uk/on/demandware.static/Sites-shopDisneyEN-Site/-/default/dwee8a51db/images/favicon-196x196.png");
+        border-radius: 0;
+      }
+
+      .chat-content {
+        border: 2px solid;
+        background-color: #f8f8f8;
+      }
+    }
+
+    .message-send {
+      .message-text-send {
+        background-color: #0795e6;
+        border-radius: 10px 0px 10px 10px;
+      }
+
+      .right-arrow {
+
+        path {
+          fill: #0795e6;
+        }
+      }
+    }
+
+  }
+
+  .input-component {
+    background-color: white;
+
+    .input-text {
+      background: #ebf6fc;
+      color: #222;
+    }
+
+    .mic-icon-div {
+      color: #222;
+      background: rgb(232, 240, 254);
+      margin: 0;
+      border-radius: 0;
+    }
+
+    .sent-icon-div {
+      background-color: #0075e3;
+
+    }
+  }
+}
