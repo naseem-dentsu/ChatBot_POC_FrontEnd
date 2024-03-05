@@ -1,9 +1,60 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+#chatbot_root {
   text-align: center;
   box-sizing: border-box;
+  height: 100vh;
+  width: 100%;
+  background-image: url("./assets/body-background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.choose-client-wrapper {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  span {
+    font-family: monospace;
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFF;
+  }
+
+  >div {
+    height: 100px;
+    width: 234px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: transparent;
+
+    &:hover {
+      border: 2px rgb(255, 255, 255) solid;
+      box-shadow: rgb(255, 255, 255, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+
+    img {
+      height: auto;
+      width: 234px;
+    }
+  }
+
+  .shiseido {
+    img {
+      margin-top: 20px;
+    }
+  }
+
+  .disney {
+    img {
+      margin-top: 2px;
+    }
+  }
 }
 
 .logo {
@@ -39,6 +90,7 @@
 
 body {
   font-family: Inter;
+  margin: 0;
 }
 
 .content {

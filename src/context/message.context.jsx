@@ -2,6 +2,14 @@ import { createContext, useEffect, useState } from "react";
 // import axios from 'axios';
 import { responseParser } from "../utility/utils";
 export const MessageProvider = ({ children }) => {
+    const { PROD,
+        VITE_APP_API_BASE_DEV_URL,
+        VITE_APP_API_BASE_DEV_DISNEY_URL,
+        VITE_APP_API_BASE_PROD_URL,
+        VITE_APP_API_BASE_PROD_DISNEY_URL,
+    } = import.meta.env;
+
+
     const [loading, setLoading] = useState({ isLoading: false, query: "" });
     const [error, setError] = useState(false);
     const [inputDisabled, setInputDisabled] = useState(true);
@@ -9,11 +17,10 @@ export const MessageProvider = ({ children }) => {
     const [streamMsg, setStreamMsg] = useState("");
     const [chatThread, setChatThread] = useState([])
     const [apiEndpoint, setApiEndpoint] = useState("query/document");
+    const [client, setClient] = useState();
+    const [baseUrl, setBaseUrl] = useState("");
+    const [domain, setDomain] = useState("https://www.shiseido.com");
 
-
-    const { PROD, VITE_APP_API_BASE_DEV_URL, VITE_APP_API_BASE_PROD_URL, VITE_APP_CLIENT } = import.meta.env;
-
-    const url = (PROD ? VITE_APP_API_BASE_PROD_URL : VITE_APP_API_BASE_DEV_URL);
     const fireQuery = async (queryMessage) => {
         if (queryMessage) {
             const param = {
@@ -22,7 +29,7 @@ export const MessageProvider = ({ children }) => {
             }
 
             try {
-                const response = await fetch(url + apiEndpoint, {
+                const response = await fetch(baseUrl + apiEndpoint, {
                     // signal: AbortSignal.timeout(10000),
                     method: "POST",
                     headers: {
@@ -47,8 +54,8 @@ export const MessageProvider = ({ children }) => {
                         break;
                     }
                     const decodedChunk = decoder.decode(value, { stream: true });
-                    finalOutput = responseParser(finalOutput + decodedChunk);
-                    setStreamMsg(answer => responseParser(answer + decodedChunk)); // update state with new chunk
+                    finalOutput = responseParser(finalOutput + decodedChunk, domain);
+                    setStreamMsg(answer => responseParser(answer + decodedChunk, domain)); // update state with new chunk
                 }
 
                 setChatThread(prevThread => [...prevThread, { "Q": queryMessage, "A": finalOutput }])
@@ -76,6 +83,29 @@ export const MessageProvider = ({ children }) => {
         setInputDisabled(true)
     }, [history])
 
+    useEffect(() => {
+        if (!client) return;
+        let url;
+        if (PROD) {
+            if (client === "DISNEY") {
+                url = VITE_APP_API_BASE_PROD_DISNEY_URL
+            }
+            else {
+                url = VITE_APP_API_BASE_PROD_URL
+            }
+        }
+        else {
+            if (client === "DISNEY") {
+                url = VITE_APP_API_BASE_DEV_DISNEY_URL
+            }
+            else {
+                url = VITE_APP_API_BASE_DEV_URL
+            }
+        }
+        setBaseUrl(url)
+        setDomain(client === "DISNEY" ? "https://www.disneystore.co.uk/" : "https://www.shiseido.com")
+    }, [PROD, VITE_APP_API_BASE_DEV_DISNEY_URL, VITE_APP_API_BASE_DEV_URL, VITE_APP_API_BASE_PROD_DISNEY_URL, VITE_APP_API_BASE_PROD_URL, client])
+
     const value = {
         loading,
         setLoading,
@@ -91,7 +121,8 @@ export const MessageProvider = ({ children }) => {
         error,
         apiEndpoint,
         setApiEndpoint,
-        client: VITE_APP_CLIENT
+        client,
+        setClient
     }
     return <MessageContext.Provider value={value}>{children}</MessageContext.Provider>
 }
@@ -109,5 +140,6 @@ export const MessageContext = createContext({
     chatThread: [],
     setChatThread: () => null,
     error: false,
-    client: ""
+    client: "",
+    setClient: () => { },
 })
