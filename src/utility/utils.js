@@ -28,7 +28,7 @@ export const responseParser = (data, domain) => {
   })
 
   data = convertRelativeToAbsolute(data, domain)
-
+  data = boldify(data)
   return data;
 }
 
@@ -48,11 +48,13 @@ function convertRelativeToAbsolute(inputString, domain = "https://www.shiseido.c
   return resultString;
 }
 
-// function convertDataBasedImgtoURL(inputString) {
-//   var dataImageUrlRegex = /\((data:image\/[^;]+;base64,[^)]+)\)/g;
-//   inputString.replace(dataImageUrlRegex, function (match, p1) {
-//     // Create an HTML anchor tag
-//     return ` <br/> <img src=${p1.trim()} class="product-image"/>`
-//   });
-// }
+function boldify(sentence) {
+  // Regular expression to match words enclosed within **
+  var regex = /\*\*(.*?)\*\*/g;
+
+  // Replace matched words with bold tags
+  var result = sentence.replace(regex, "<b>$1</b>");
+
+  return result;
+}
 
