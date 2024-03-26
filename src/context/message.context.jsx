@@ -103,7 +103,7 @@ export const MessageProvider = ({ children }) => {
             }
         }
         setBaseUrl(url)
-        setDomain(client === "DISNEY" ? "https://www.disneystore.co.uk/" : "https://www.shiseido.com")
+        setDomain(client === "DISNEY" ? "https://www.disneystore.co.uk" : "https://www.shiseido.com")
     }, [PROD, VITE_APP_API_BASE_DEV_DISNEY_URL, VITE_APP_API_BASE_DEV_URL, VITE_APP_API_BASE_PROD_DISNEY_URL, VITE_APP_API_BASE_PROD_URL, client])
 
     const value = {
