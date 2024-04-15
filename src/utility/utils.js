@@ -1,3 +1,5 @@
+import { carouselUi } from '../template'
+
 export const scrollToBottom = () => {
   var secondContent = document.getElementById(
     "bottom",
@@ -26,8 +28,8 @@ export const responseParser = (data, domain) => {
       return ` <a href=${matched.match(url)[0]} target="_blank" class="hyperlink"> Go to Page </a>`
     }
   })
-
-  data = convertRelativeToAbsolute(data, domain)
+  data = carousel(data)
+ // data = convertRelativeToAbsolute(data, domain)
   data = boldify(data)
   return data;
 }
@@ -58,3 +60,24 @@ function boldify(sentence) {
   return result;
 }
 
+function carousel(sentence){
+ const regex = /\[([^[\]]+)]\(([^)]+)\)/;
+ const matches = sentence.match(regex);
+ if (matches && matches.length === 3) {
+     const imageLinks = matches[2].split(',');
+     const length = imageLinks.length;
+     imageLinks[0]=imageLinks[0].slice(1,imageLinks[0].length-1)
+     imageLinks[length-1]=imageLinks[length-1].slice(0, imageLinks[length-1].length-1)
+     let imageArray = imageLinks.reduce((t,c)=>{
+      t+=`<img src="${c}">`
+      return t;
+     },'')
+     const res = carouselUi.replace(/{{replace_content}}/g, imageArray)
+     sentence = sentence.replace(matches[2],res)
+
+ } else {
+     console.log("No array of links found.");
+ }
+  
+  return sentence;
+}

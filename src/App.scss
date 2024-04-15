@@ -451,4 +451,29 @@ body {
   text-decoration: underline
 }
 
+.ui__chat__carousel {
+  overflow: hidden;
+}
+
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.ui__chat__carousel img {
+  flex: 0 0 auto;
+  margin-right: 10px; 
+}
+
+.ui__chat__carousel img {
+  align-self: center;
+  width: 100px
+}
+
+.ui__chat__carousel .prev-btn,
+.ui__chat__carousel .next-btn {
+  cursor: pointer;
+}
+
+
 @import url("./styles/disney.scss");

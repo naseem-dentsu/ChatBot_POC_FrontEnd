@@ -1,0 +1,37 @@
+<div class="ui__chat__carousel">
+    <div class="carousel-container">
+        {{replace_content}}     
+    </div>
+    <button class="prev-btn">Previous</button>
+    <button class="next-btn">Next</button>
+</div>
+
+<script>
+    const prevButton = document.querySelector('.prev-btn');
+    const nextButton = document.querySelector('.next-btn');
+    const carouselContainer = document.querySelector('.carousel-container');
+
+    let currentIndex = 0;
+    const totalImages = document.querySelectorAll('.carousel-container img').length;
+
+    prevButton.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+    }
+    });
+
+    nextButton.addEventListener('click', () => {
+    if (currentIndex < totalImages - 1) {
+        currentIndex++;
+        updateCarousel();
+    }
+    });
+
+    function updateCarousel() {
+        const slideWidth = carouselContainer.clientWidth;
+        const newPosition = -currentIndex * slideWidth;
+        carouselContainer.style.transform = `translateX(${newPosition}px)`;
+    }
+
+</script>
